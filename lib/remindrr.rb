@@ -1,5 +1,7 @@
-require "remindrr/version"
+require 'faraday'
+
+require 'remindrr/version'
+require 'remindrr/error'
 
 module Remindrr
-  # Your code goes here...
 end
