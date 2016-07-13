@@ -1,7 +1,7 @@
 require 'faraday_middleware'
 require 'faraday/raise_http_exception'
 
-module Pushrr
+module Remindrr
   module Request
     def get(uri)
       conn.get(uri).body
@@ -20,7 +20,7 @@ module Pushrr
 
     def conn
       Faraday.new(url: 'http://localhost:3000/api') do |connection|
-        connection.headers['Authorization'] = 'Token fafeffe6bf3c294bb7f52fc4c47a22fa'
+        connection.headers['Authorization'] = 'Token 19798f7c9fd262d0f54dddee9ed12ff0'
         connection.request  :url_encoded             # form-encode POST params
         connection.response :logger                  # log requests to STDOUT
         connection.adapter  Faraday.default_adapter  # make requests with Net::HTTP
