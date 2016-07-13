@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby wrapper for remindrr.io API}
   spec.description   = %q{A Ruby wrapper for the Remindrr REST API}
-  spec.homepage      = "remindrr.io"
+  spec.homepage      = "http://remindrr.io"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'webmock', '~> 2.1'
+  spec.add_development_dependency 'pry-byebug'
 
   spec.add_runtime_dependency 'faraday', '~> 0.9.2'
   spec.add_runtime_dependency 'faraday_middleware', '~> 0.10.0'
