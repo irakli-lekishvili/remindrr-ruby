@@ -3,18 +3,24 @@ require 'faraday/raise_http_exception'
 
 module Remindrr
   module Request
+
     def get(uri)
       conn.get(uri).body
     end
 
-    def post(url, attributes)
-      response = conn.post(url) do |request|
+    def post(url, attributes, post=true)
+      method = post ? :post : :put
+
+      response = conn.send(method, url) do |request|
+      # response = conn.post(url) do |request|
         request.headers['Content-Type'] = 'application/json'
         request.body = attributes.to_json
       end
 
       response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
     end
+
+    alias_method :put, :post
 
     private
 

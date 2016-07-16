@@ -1,6 +1,9 @@
 module Remindrr
   class App
-    extend Request
+    extend  Request
+    include Request
+
+    attr_accessor :id, :name, :endpoint, :created_at, :updated_at
 
     def initialize(attrs)
       attrs.each do |key, value|
@@ -26,6 +29,17 @@ module Remindrr
 
       app = post('v1/apps', params)
       new app
+    end
+
+    def save
+      params = {
+        id:       self.id,
+        name:     self.name,
+        endpoint: self.endpoint
+      }
+
+      put("v1/apps/#{self.id}", params, false)
+      self
     end
   end
 end
