@@ -20,7 +20,7 @@ module Remindrr
     def receive
       body = @request.body.read
       body = parse_request(body)
-      Reminder.receive(body)
+      Remindrr::Reminder.receive(body)
 
     rescue Remindrr::BadRequest => error
       respond_with_error(error)
