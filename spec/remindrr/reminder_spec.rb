@@ -56,4 +56,17 @@ context Remindrr::Reminder do
     it { expect(@reminder.id).not_to be_nil }
     it { expect(@reminder).to be_a Remindrr::Reminder }
   end
+
+  context '#on' do
+    before { Remindrr::Reminder.on do end }
+
+    it { expect(Remindrr::Reminder.instance_variable_get(:@block)).not_to be nil }
+  end
+
+  context '#receive' do
+    let(:proc) { Proc.new { |args| args } }
+    before { Remindrr::Reminder.on(&proc) }
+
+    it { expect(Remindrr::Reminder.receive('foo')).to eq('foo') }
+  end
 end

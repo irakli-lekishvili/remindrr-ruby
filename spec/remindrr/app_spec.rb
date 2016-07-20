@@ -56,7 +56,7 @@ describe Remindrr::App do
     it { expect(@app).to be_a Remindrr::App }
   end
 
-  context '#save' do
+  context '.save' do
     let (:app) { Remindrr::App.all.first }
 
     before do
