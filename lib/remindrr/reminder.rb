@@ -2,6 +2,8 @@ module Remindrr
   class Reminder
     extend Request
 
+    attr_accessor :id, :remind_at, :attempt_count, :data, :created_at
+
     def initialize(attrs)
       attrs.each do |key, value|
         instance_variable_set("@#{key}", value)
@@ -14,7 +16,7 @@ module Remindrr
     end
 
     def self.find(app, id)
-      reminder = get("v1/apps/#{app.id}/reminders/id")
+      reminder = get("v1/apps/#{app.id}/reminders/#{id}")
       new reminder
     end
 
