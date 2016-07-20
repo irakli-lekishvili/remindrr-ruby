@@ -41,7 +41,7 @@ module Remindrr
       self
     end
 
-    def delete
+    def destroy
       delete("v1/apps/#{self.id}")
     end
   end

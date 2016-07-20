@@ -8,11 +8,10 @@ module Remindrr
 
     def post(url, attributes)
       response = connection.post(url) do |request|
-        # request.headers['Content-Type'] = 'application/json'
+        request.headers['Content-Type'] = 'application/json'
         request.body = attributes.to_json
       end
-
-      # response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
+      response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
     end
 
     def self.extended(base)
@@ -24,11 +23,10 @@ module Remindrr
 
       def put(url, attributes)
         response = connection.put(url) do |request|
-          # request.headers['Content-Type'] = 'application/json'
+          request.headers['Content-Type'] = 'application/json'
           request.body = attributes.to_json
         end
-
-        # response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
+        response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
       end
 
       def delete(url)
