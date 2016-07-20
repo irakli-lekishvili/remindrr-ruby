@@ -1,3 +1,6 @@
+require 'faraday_middleware'
+require 'faraday/raise_http_exception'
+
 module Remindrr
   module Connection
     private

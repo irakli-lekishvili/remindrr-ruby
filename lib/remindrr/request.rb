@@ -1,6 +1,3 @@
-require 'faraday_middleware'
-require 'faraday/raise_http_exception'
-
 module Remindrr
   module Request
     include Connection
@@ -9,18 +6,34 @@ module Remindrr
       connection.get(uri).body
     end
 
-    def post(url, attributes, post=true)
-      method = post ? :post : :put
-
-      response = connection.send(method, url) do |request|
-      # response = conn.post(url) do |request|
-        request.headers['Content-Type'] = 'application/json'
+    def post(url, attributes)
+      response = connection.post(url) do |request|
+        # request.headers['Content-Type'] = 'application/json'
         request.body = attributes.to_json
       end
 
-      response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
+      # response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
     end
 
-    alias_method :put, :post
+    def self.extended(base)
+      base.include(InstanceMethods)
+    end
+
+    module InstanceMethods
+      include Connection
+
+      def put(url, attributes)
+        response = connection.put(url) do |request|
+          # request.headers['Content-Type'] = 'application/json'
+          request.body = attributes.to_json
+        end
+
+        # response.body.inject({}){ |memo,(k,v)| memo[k.to_sym] = v; memo }
+      end
+
+      def delete(url)
+        connection.delete(url)
+      end
+    end
   end
 end

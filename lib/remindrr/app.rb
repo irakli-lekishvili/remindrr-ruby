@@ -1,7 +1,6 @@
 module Remindrr
   class App
     extend  Request
-    include Request
 
     attr_accessor :id, :name, :endpoint, :created_at, :updated_at
 
@@ -38,8 +37,12 @@ module Remindrr
         endpoint: self.endpoint
       }
 
-      put("v1/apps/#{self.id}", params, false)
+      put("v1/apps/#{self.id}", params)
       self
+    end
+
+    def delete
+      delete("v1/apps/#{self.id}")
     end
   end
 end
