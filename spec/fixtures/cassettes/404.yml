@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/apps/-1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Token 12345
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - text/plain; charset=utf-8
+      X-Request-Id:
+      - 17e58a92-9267-4909-b29d-e29b078abc93
+      X-Runtime:
+      - '0.172511'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: "ActiveRecord::RecordNotFound at /api/v1/apps/-1\n===============================================\n\n>
+        Couldn't find App with 'id'=-1 [WHERE \"apps\".\"user_id\" = $1]\n\napp/controllers/api/v1/apps_controller.rb,
+        line 38\n--------------------------------------------------\n\n``` ruby\n
+        \  33     end\n   34   \n   35     private\n   36   \n   37     def find_app\n>
+        \ 38       @app = current_user.apps.find(params[:id])\n   39     end\n   40
+        \  \n   41     def app_params\n   42       params.permit(:name, :endpoint)\n
+        \  43     end\n```\n\nApp backtrace\n-------------\n\n - app/controllers/api/v1/apps_controller.rb:38:in
+        `find_app'\n\nFull backtrace\n--------------\n\n - activerecord (5.0.0) lib/active_record/relation/finder_methods.rb:357:in
+        `raise_record_not_found_exception!'\n - activerecord (5.0.0) lib/active_record/relation/finder_methods.rb:477:in
+        `find_one'\n - activerecord (5.0.0) lib/active_record/relation/finder_methods.rb:456:in
+        `find_with_ids'\n - activerecord (5.0.0) lib/active_record/relation/finder_methods.rb:66:in
+        `find'\n - activerecord (5.0.0) lib/active_record/associations/collection_association.rb:110:in
+        `find'\n - activerecord (5.0.0) lib/active_record/associations/collection_proxy.rb:141:in
+        `find'\n - app/controllers/api/v1/apps_controller.rb:38:in `find_app'\n -
+        activesupport (5.0.0) lib/active_support/callbacks.rb:382:in `block in make_lambda'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:150:in `block (2 levels)
+        in halting_and_conditional'\n - actionpack (5.0.0) lib/abstract_controller/callbacks.rb:12:in
+        `block (2 levels) in <module:Callbacks>'\n - activesupport (5.0.0) lib/active_support/callbacks.rb:151:in
+        `block in halting_and_conditional'\n - activesupport (5.0.0) lib/active_support/callbacks.rb:454:in
+        `block in call'\n - activesupport (5.0.0) lib/active_support/callbacks.rb:454:in
+        `each'\n - activesupport (5.0.0) lib/active_support/callbacks.rb:454:in `call'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:101:in `__run_callbacks__'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:90:in `run_callbacks'\n
+        - actionpack (5.0.0) lib/abstract_controller/callbacks.rb:19:in `process_action'\n
+        - actionpack (5.0.0) lib/action_controller/metal/rescue.rb:20:in `process_action'\n
+        - actionpack (5.0.0) lib/action_controller/metal/instrumentation.rb:32:in
+        `block in process_action'\n - activesupport (5.0.0) lib/active_support/notifications.rb:164:in
+        `block in instrument'\n - activesupport (5.0.0) lib/active_support/notifications/instrumenter.rb:21:in
+        `instrument'\n - activesupport (5.0.0) lib/active_support/notifications.rb:164:in
+        `instrument'\n - actionpack (5.0.0) lib/action_controller/metal/instrumentation.rb:30:in
+        `process_action'\n - actionpack (5.0.0) lib/action_controller/metal/params_wrapper.rb:248:in
+        `process_action'\n - activerecord (5.0.0) lib/active_record/railties/controller_runtime.rb:18:in
+        `process_action'\n - actionpack (5.0.0) lib/abstract_controller/base.rb:126:in
+        `process'\n - actionview (5.0.0) lib/action_view/rendering.rb:30:in `process'\n
+        - actionpack (5.0.0) lib/action_controller/metal.rb:190:in `dispatch'\n -
+        actionpack (5.0.0) lib/action_controller/metal.rb:262:in `dispatch'\n - actionpack
+        (5.0.0) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'\n - actionpack
+        (5.0.0) lib/action_dispatch/routing/route_set.rb:32:in `serve'\n - actionpack
+        (5.0.0) lib/action_dispatch/journey/router.rb:39:in `block in serve'\n - actionpack
+        (5.0.0) lib/action_dispatch/journey/router.rb:26:in `each'\n - actionpack
+        (5.0.0) lib/action_dispatch/journey/router.rb:26:in `serve'\n - actionpack
+        (5.0.0) lib/action_dispatch/routing/route_set.rb:725:in `call'\n - warden
+        (1.2.6) lib/warden/manager.rb:35:in `block in call'\n - warden (1.2.6) lib/warden/manager.rb:34:in
+        `catch'\n - warden (1.2.6) lib/warden/manager.rb:34:in `call'\n - rack (2.0.1)
+        lib/rack/etag.rb:25:in `call'\n - rack (2.0.1) lib/rack/conditional_get.rb:25:in
+        `call'\n - rack (2.0.1) lib/rack/head.rb:12:in `call'\n - rack (2.0.1) lib/rack/session/abstract/id.rb:222:in
+        `context'\n - rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'\n
+        - actionpack (5.0.0) lib/action_dispatch/middleware/cookies.rb:613:in `call'\n
+        - activerecord (5.0.0) lib/active_record/migration.rb:552:in `call'\n - actionpack
+        (5.0.0) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:97:in `__run_callbacks__'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'\n
+        - activesupport (5.0.0) lib/active_support/callbacks.rb:90:in `run_callbacks'\n
+        - actionpack (5.0.0) lib/action_dispatch/middleware/callbacks.rb:36:in `call'\n
+        - actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in `call'\n
+        - actionpack (5.0.0) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'\n
+        - better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'\n
+        - better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'\n
+        - better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'\n - actionpack
+        (5.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'\n
+        - web-console (3.3.1) lib/web_console/middleware.rb:131:in `call_app'\n -
+        web-console (3.3.1) lib/web_console/middleware.rb:28:in `block in call'\n
+        - web-console (3.3.1) lib/web_console/middleware.rb:18:in `catch'\n - web-console
+        (3.3.1) lib/web_console/middleware.rb:18:in `call'\n - actionpack (5.0.0)
+        lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'\n - railties
+        (5.0.0) lib/rails/rack/logger.rb:36:in `call_app'\n - railties (5.0.0) lib/rails/rack/logger.rb:24:in
+        `block in call'\n - activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in
+        `block in tagged'\n - activesupport (5.0.0) lib/active_support/tagged_logging.rb:26:in
+        `tagged'\n - activesupport (5.0.0) lib/active_support/tagged_logging.rb:70:in
+        `tagged'\n - railties (5.0.0) lib/rails/rack/logger.rb:24:in `call'\n - sprockets-rails
+        (3.1.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'\n - actionpack (5.0.0)
+        lib/action_dispatch/middleware/request_id.rb:24:in `call'\n - rack (2.0.1)
+        lib/rack/method_override.rb:22:in `call'\n - rack (2.0.1) lib/rack/runtime.rb:22:in
+        `call'\n - activesupport (5.0.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in
+        `call'\n - actionpack (5.0.0) lib/action_dispatch/middleware/executor.rb:12:in
+        `call'\n - actionpack (5.0.0) lib/action_dispatch/middleware/static.rb:136:in
+        `call'\n - rack (2.0.1) lib/rack/sendfile.rb:111:in `call'\n - railties (5.0.0)
+        lib/rails/engine.rb:522:in `call'\n - puma (3.4.0) lib/puma/configuration.rb:224:in
+        `call'\n - puma (3.4.0) lib/puma/server.rb:569:in `handle_request'\n - puma
+        (3.4.0) lib/puma/server.rb:406:in `process_client'\n - puma (3.4.0) lib/puma/server.rb:271:in
+        `block in run'\n - puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'\n\n"
+    http_version: 
+  recorded_at: Thu, 21 Jul 2016 10:42:48 GMT
+recorded_with: VCR 3.0.3
