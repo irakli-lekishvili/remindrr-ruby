@@ -1,4 +1,3 @@
-require 'pry-byebug'
 require 'faraday'
 
 require 'remindrr/version'
