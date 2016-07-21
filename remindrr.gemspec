@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby wrapper for remindrr.io API}
   spec.description   = %q{A Ruby wrapper for the Remindrr REST API}
-  spec.homepage      = "http://remindrr.io"
+  spec.homepage      = "https://github.com/lekishvili/remindrr-ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

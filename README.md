@@ -1,9 +1,4 @@
 [![Build Status](https://travis-ci.org/lekishvili/remindrr-ruby.svg?branch=master)](https://travis-ci.org/lekishvili/remindrr-ruby)
-# Remindrr
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/remindrr`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -23,7 +18,70 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Reciving reminders
+
+```ruby
+require 'remindrr'
+
+Remindrr::Reminder.on do |reminder|
+  # TODO: process your reminder
+end
+```
+
+#### Create reminders
+
+```ruby
+require 'remindrr'
+
+Remindrr.configure do |config|
+  config.client_secret = 'CLIENT_SECRET'
+end
+
+app = Remindrr::App.create(name: 'example', endpoint: 'http:://example.com')
+reminder = Remindrr::Remindr.create(app, remind_at: Time.now, data: {})
+
+```
+
+### Run it
+
+#### ...on Rack
+
+Remindrr runs on Rack, so you hook it up like you would an ordinary web application:
+
+```ruby
+# config.ru
+require 'remindrr'
+require_relative 'listener'
+
+run Remindrr::Server
+```
+
+### ..on Rails
+
+Generate Remindrr initializer:
+
+    $ rails generate remindrr
+
+Mount routes:
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  # ...
+
+  mount Rmeindrr::Server, at: 'remindrr'
+end
+```
+
+We suggest that you put your listener code in app/remindrrs
+
+```ruby
+# app/reminderrs/example.rb
+
+Remindrr::Reminder.on do |reminder|
+  # TODO: process your reminder
+end
+```
 
 ## Development
 
@@ -33,7 +91,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/remindrr.
+Bug reports and pull requests are welcome on GitHub at https://github.com/lekishvili/remindrr.
 
 
 ## License
