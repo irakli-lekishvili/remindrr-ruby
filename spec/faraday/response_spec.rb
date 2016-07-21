@@ -42,7 +42,6 @@ describe Faraday::Response do
       VCR.use_cassette '400' do
         expect do
           Remindrr::App.create(params)
-          binding.pry
         end.to raise_error(Remindrr::BadRequest, /request is bad/)
       end
     end
